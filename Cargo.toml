@@ -1,0 +1,26 @@
+[package]
+name = "platform-switch"
+version = "0.1.0"
+authors = ["Jake Swensen"]
+license = "MPL-2.0"
+description = "Namespace facades for switching between platforms."
+keywords = ["no_std", "microcontrollers", "embedded", "mcu"]
+edition = "2021"
+readme = "README.md"
+
+[features]
+default = ["std", "log"]
+std = ["std_error"]
+log = ["dep:log"]
+defmt = ["dep:defmt"]
+
+core_error = ["thiserror", "dep:thiserror-core"] # Currently requires +nightly
+std_error = ["thiserror", "dep:thiserror"]
+thiserror = []
+
+[dependencies]
+cfg-if = "1.0.0"
+defmt = { version = "0.3", optional = true }
+log = { version = "0.4", optional = true }
+thiserror = { version = "1.0", optional = true }
+thiserror-core = { version = "1.0", default-features = false, optional = true }
